@@ -1,20 +1,303 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
+<html lang="pt-BR">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daykards</title>
-  </head>
-  <body>
-    <h1>Bem vindo ao DayKards!</h1>
-    <p>Seu site favorito de flashcards!</p>
-  </body>
-  <div>
-    <a href="{% url 'login_user' %}">Login</a>
-  </div>
+    <title>DayKards | Aprenda todos os dias</title>
 
-  <footer>
-    <p>Este é o meu primeiro parágrafo em HTML.</p>
-</footer>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f8ff;
+            color: #172554;
+        }
+
+        /* CABEÇALHO */
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px 8%;
+            background: white;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 25px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #2563eb;
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #334155;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .login:hover {
+            background: #eff6ff;
+        }
+
+        .cadastro {
+            background: #2563eb;
+            color: white;
+        }
+
+        .cadastro:hover {
+            background: #1d4ed8;
+        }
+
+        /* CONTEÚDO PRINCIPAL */
+
+        main {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 10%;
+            gap: 60px;
+        }
+
+        .conteudo {
+            max-width: 550px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #dbeafe;
+            color: #2563eb;
+            padding: 9px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: 55px;
+            line-height: 1.15;
+            margin-bottom: 25px;
+            color: #172554;
+        }
+
+        h1 span {
+            color: #2563eb;
+        }
+
+        .descricao {
+            color: #64748b;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        .botao-principal {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 16px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .botao-principal:hover {
+            background: #1d4ed8;
+            transform: translateY(-3px);
+        }
+
+        /* ILUSTRAÇÃO DOS FLASHCARDS */
+
+        .cards {
+            position: relative;
+            width: 400px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flashcard {
+            position: absolute;
+            width: 270px;
+            height: 190px;
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.12);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .flashcard h3 {
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+
+        .flashcard p {
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .card-back {
+            transform: rotate(-10deg) translate(-35px, -10px);
+            background: #dbeafe;
+        }
+
+        .card-front {
+            transform: rotate(7deg) translate(30px, 30px);
+            z-index: 2;
+        }
+
+        /* RODAPÉ */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 850px) {
+            main {
+                flex-direction: column;
+                text-align: center;
+                padding: 60px 7%;
+            }
+
+            h1 {
+                font-size: 42px;
+            }
+
+            .cards {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            header {
+                padding: 20px 5%;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            nav {
+                gap: 5px;
+            }
+
+            nav a {
+                padding: 10px;
+                font-size: 13px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .cards {
+                transform: scale(0.85);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <div class="logo-icon">D</div>
+            DayKards
+        </div>
+
+        <nav>
+            <a href="/login/" class="login">Login</a>
+            <a href="/cadastro/" class="cadastro">Cadastrar-se</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="conteudo">
+
+            <span class="tag">📚 Seu aprendizado, todos os dias</span>
+
+            <h1>
+                Aprenda mais.
+                <span>Memorize melhor.</span>
+            </h1>
+
+            <p class="descricao">
+                Organize seus estudos, crie seus próprios flashcards
+                e revise seus conhecimentos de maneira simples e
+                eficiente. Transforme pequenos momentos em grandes
+                aprendizados com o DayKards.
+            </p>
+
+            <a href="/cadastro/" class="botao-principal">
+                Comece agora →
+            </a>
+
+        </section>
+
+        <section class="cards">
+
+            <div class="flashcard card-back">
+                <h3>Resposta</h3>
+                <p>É a unidade básica de informação de um computador.</p>
+            </div>
+
+            <div class="flashcard card-front">
+                <h3>💡 Pergunta</h3>
+                <p>O que é um bit na computação?</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        © 2026 DayKards. Todos os direitos reservados.
+    </footer>
+
+</body>
 </html>
 

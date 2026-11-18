@@ -1,12 +1,352 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
+<html lang="pt-BR">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-  </head>
-  <body>
-    <h1>pagina de login</h1>
-    <p>Este é o meu primeiro parágrafo em HTML.</p>
-  </body>
+    <title>Login | DayKards</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f5f8ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            width: 900px;
+            min-height: 550px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(37, 99, 235, 0.10);
+        }
+
+        /* LADO ESQUERDO */
+
+        .lado-esquerdo {
+            flex: 1;
+            background: #2563eb;
+            color: white;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            color: #2563eb;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mensagem h1 {
+            font-size: 36px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .mensagem p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #dbeafe;
+        }
+
+        .rodape-esquerdo {
+            font-size: 13px;
+            color: #dbeafe;
+        }
+
+        /* LADO DIREITO */
+
+        .lado-direito {
+            flex: 1;
+            padding: 55px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .titulo {
+            margin-bottom: 35px;
+        }
+
+        .titulo h2 {
+            color: #172554;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .titulo p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* FORMULÁRIO */
+
+        .campo {
+            margin-bottom: 22px;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 9px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #334155;
+        }
+
+        .campo input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            outline: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .campo input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .senha-container {
+            position: relative;
+        }
+
+        .senha-container input {
+            padding-right: 65px;
+        }
+
+        .mostrar-senha {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            color: #2563eb;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .esqueceu-senha {
+            display: block;
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 25px;
+            color: #2563eb;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .botao-login {
+            width: 100%;
+            padding: 15px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .botao-login:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .cadastro {
+            text-align: center;
+            margin-top: 30px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .cadastro a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .cadastro a:hover,
+        .esqueceu-senha:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 750px) {
+            .container {
+                max-width: 450px;
+                flex-direction: column;
+            }
+
+            .lado-esquerdo {
+                padding: 25px 30px;
+                min-height: 200px;
+                gap: 30px;
+            }
+
+            .mensagem h1 {
+                font-size: 25px;
+            }
+
+            .mensagem p {
+                font-size: 14px;
+            }
+
+            .rodape-esquerdo {
+                display: none;
+            }
+
+            .lado-direito {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- LADO ESQUERDO -->
+
+        <section class="lado-esquerdo">
+
+            <div class="logo">
+                <div class="logo-icon">D</div>
+                DayKards
+            </div>
+
+            <div class="mensagem">
+                <h1>Seu aprendizado começa aqui.</h1>
+
+                <p>
+                    Retome seus estudos, revise seus flashcards
+                    e continue evoluindo um dia de cada vez.
+                </p>
+            </div>
+
+            <div class="rodape-esquerdo">
+                Aprender nunca foi tão simples.
+            </div>
+
+        </section>
+
+        <!-- LADO DIREITO -->
+
+        <section class="lado-direito">
+
+            <div class="titulo">
+                <h2>Bem-vindo de volta!</h2>
+                <p>Entre na sua conta para continuar estudando.</p>
+            </div>
+
+            <form method="POST" action="{% url 'login_user' %}">
+
+                {% csrf_token %}
+
+                <div class="campo">
+                    <label for="username">Usuário ou e-mail</label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Digite seu usuário ou e-mail"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="password">Senha</label>
+
+                    <div class="senha-container">
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Digite sua senha"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="mostrar-senha"
+                            onclick="toggleSenha()"
+                        >
+                            Mostrar
+                        </button>
+                    </div>
+                </div>
+
+                <a href="/recuperar-senha/" class="esqueceu-senha">
+                    Esqueceu sua senha?
+                </a>
+
+                <button type="submit" class="botao-login">
+                    Entrar na minha conta →
+                </button>
+
+            </form>
+
+            <div class="cadastro">
+                Ainda não possui uma conta?
+                <a href="/cadastro/">Cadastre-se</a>
+            </div>
+
+        </section>
+
+    </div>
+
+    <script>
+        function toggleSenha() {
+
+            const senha = document.getElementById("password");
+            const botao = document.querySelector(".mostrar-senha");
+
+            if (senha.type === "password") {
+                senha.type = "text";
+                botao.textContent = "Ocultar";
+            } else {
+                senha.type = "password";
+                botao.textContent = "Mostrar";
+            }
+
+        }
+    </script>
+
+</body>
 </html>

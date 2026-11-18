@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | DayKards</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f4f7fb;
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1050px;
+            min-height: 650px;
+            display: flex;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Painel lateral */
+
+        .side-panel {
+            width: 40%;
+            background: linear-gradient(145deg, #2563eb, #1e40af);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 45px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #bfdbfe;
+        }
+
+        .side-content {
+            margin-bottom: 60px;
+        }
+
+        .side-content h1 {
+            font-size: 36px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .side-content p {
+            color: #dbeafe;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .side-footer {
+            color: #bfdbfe;
+            font-size: 13px;
+        }
+
+        /* Formulário */
+
+        .form-panel {
+            width: 60%;
+            padding: 55px 75px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-header {
+            margin-bottom: 30px;
+        }
+
+        .form-header h2 {
+            font-size: 30px;
+            color: #172554;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            outline: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .input-group input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .password-hint {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            margin: 5px 0 22px;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .terms input {
+            margin-top: 3px;
+            accent-color: #2563eb;
+        }
+
+        .terms a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #2563eb;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .error-message {
+            color: #dc2626;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        /* Responsividade */
+
+        @media (max-width: 800px) {
+            .container {
+                max-width: 500px;
+            }
+
+            .side-panel {
+                display: none;
+            }
+
+            .form-panel {
+                width: 100%;
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            body {
+                padding: 12px;
+            }
+
+            .form-panel {
+                padding: 35px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <aside class="side-panel">
+
+            <div class="logo">
+                Day<span>Kards</span>
+            </div>
+
+            <div class="side-content">
+                <h1>Comece sua jornada de aprendizado.</h1>
+
+                <p>
+                    Crie sua conta e organize seus estudos com flashcards.
+                    Aprenda no seu ritmo e revise seus conteúdos de forma
+                    inteligente.
+                </p>
+            </div>
+
+            <div class="side-footer">
+                © 2026 DayKards. Todos os direitos reservados.
+            </div>
+
+        </aside>
+
+        <section class="form-panel">
+
+            <header class="form-header">
+                <h2>Crie sua conta</h2>
+                <p>Preencha os campos abaixo para começar.</p>
+            </header>
+
+            <form method="POST" action="{% url 'cadastro' %}">
+                {% csrf_token %}
+
+                <div class="input-group">
+                    <label for="username">Nome de usuário</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Escolha um nome de usuário"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="seuemail@exemplo.com"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Crie uma senha"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required
+                    >
+                    <p class="password-hint">
+                        Utilize pelo menos 8 caracteres.
+                    </p>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirm_password">Confirmar senha</label>
+                    <input
+                        type="password"
+                        id="confirm_password"
+                        name="confirm_password"
+                        placeholder="Digite sua senha novamente"
+                        autocomplete="new-password"
+                        required
+                    >
+                </div>
+
+                <div class="terms">
+                    <input type="checkbox" id="terms" required>
+
+                    <label for="terms">
+                        Concordo com os termos de uso e a política de
+                        privacidade do DayKards.
+                    </label>
+                </div>
+
+                <p id="error-message" class="error-message"></p>
+
+                <button type="submit" class="submit-btn">
+                    Criar minha conta
+                </button>
+
+            </form>
+
+            <div class="login-link">
+                Já possui uma conta?
+                <a href="{% url 'login_user' %}">Entrar</a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+        const form = document.querySelector("form");
+        const password = document.getElementById("password");
+        const confirmPassword = document.getElementById("confirm_password");
+        const errorMessage = document.getElementById("error-message");
+
+        form.addEventListener("submit", function(event) {
+            errorMessage.textContent = "";
+
+            if (password.value !== confirmPassword.value) {
+                event.preventDefault();
+                errorMessage.textContent = "As senhas não são iguais.";
+                confirmPassword.focus();
+            }
+        });
+    </script>
+
+</body>
+</html>

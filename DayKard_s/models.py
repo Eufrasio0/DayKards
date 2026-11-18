@@ -1,11 +1,17 @@
+
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+
 class Baralho(models.Model):
     """Estrutura de um baralho de estudo"""
 
-    usuario = models.ForeignKey(User,on_delete=models.CASCADE,related_name="baralhos")
+    usuario = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="baralhos"
+    )
+
     nome_baralho = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
 
@@ -15,7 +21,13 @@ class Baralho(models.Model):
 
 class Card(models.Model):
     """Estrutura de um cartão de estudo"""
-    baralho = models.ForeignKey(Baralho,on_delete=models.CASCADE,related_name="cards")
+
+    baralho = models.ForeignKey(
+        Baralho,
+        on_delete=models.CASCADE,
+        related_name="cards"
+    )
+
     pergunta = models.CharField(max_length=200)
     resposta = models.CharField(max_length=300)
     date_added = models.DateTimeField(auto_now_add=True)
